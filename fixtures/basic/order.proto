@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package demo.orders;
+
+option php_namespace = "Demo\\Orders";
+
+enum OrderState {
+  ORDER_STATE_UNSPECIFIED = 0;
+  ORDER_STATE_OPEN = 1;
+  ORDER_STATE_PAID = 2;
+}
+
+message Order {
+  string id = 1;
+  int64 cents = 2;
+  OrderState state = 3;
+}
+
+service OrderLookup {
+  rpc GetOrder (Order) returns (Order);
+}
