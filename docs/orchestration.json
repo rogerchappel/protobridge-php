@@ -1,0 +1,8 @@
+{
+  "name": "protobridge-php",
+  "mode": "local-first",
+  "entrypoints": ["protobridge-php inspect", "protobridge-php compare"],
+  "checks": ["npm test", "npm run check", "npm run build", "npm run smoke", "bash scripts/validate.sh"],
+  "network": "never by default",
+  "writes": ["optional --output report path"]
+}
