@@ -1,50 +1,96 @@
 # protobridge-php
 
-Local-first PHP protobuf generation compatibility checker.
+A small, sharp compatibility scout for PHP protobuf generation. It checks fixture `.proto` schemas against deterministic PHP-shape snapshots so you can catch generator drift before it lands in an SDK or agent workflow.
 
-## Status
-
-This repository is early-stage. Confirm the current support, release, and
-security posture before using it in production.
+It is deliberately boring in the best way: local files in, clear report out, no hidden network calls.
 
 ## Install
 
-Replace this section with the generated repository's installation steps.
-
-```sh
-pnpm install
+```bash
+npm install
+npm run build
 ```
 
-## Use
+Run from source during development:
 
-Replace this section with the smallest useful example for the generated
-repository.
-
-```sh
-pnpm dev
+```bash
+node bin/protobridge-php.js --help
 ```
 
-## Verify
+## Quickstart
 
-Run the local validation script before opening a pull request:
-
-```sh
-bash scripts/validate.sh
+```bash
+node bin/protobridge-php.js inspect fixtures/basic \
+  --baseline fixtures/basic/snapshots/php-8.2.json \
+  --protoc 25.3.0 \
+  --php-plugin 1.0.0 \
+  --php-runtime 4.30.0
 ```
 
-`scripts/validate.sh` runs the repository's standard local checks when they are defined and will also run `agent-qc ready` when `agent-qc` is installed. Missing `agent-qc` is treated as a skip, not a failure.
+JSON for agents:
+
+```bash
+node bin/protobridge-php.js inspect fixtures/basic --format json --output report.json
+```
+
+Compare two snapshots directly:
+
+```bash
+node bin/protobridge-php.js compare actual.json expected.json
+```
+
+## What V1 does
+
+- Recursively reads local `.proto` files.
+- Parses package, PHP namespace, messages, fields, enums, and services.
+- Builds a deterministic descriptor and PHP class/field shape.
+- Compares that shape to a stored snapshot.
+- Reports protobuf/PHP plugin/runtime version mismatches.
+- Runs without invoking `protoc`, contacting the network, or needing credentials.
+
+## Why not call protoc yet?
+
+Real generator adapters are useful, but V1 optimizes for reproducibility. The deterministic fallback lets maintainers review fixture changes anywhere, including CI and agent sandboxes. Future adapters should be explicit opt-ins.
+
+## Safety
+
+`protobridge-php` is local-first:
+
+- no telemetry
+- no publish step
+- no credential reads
+- no network calls
+- writes only when `--output` is provided
+
+## Examples
+
+Fixture: `fixtures/basic`
+
+Golden snapshot: `fixtures/basic/snapshots/php-8.2.json`
+
+Expected compatible report begins with:
+
+```text
+protobridge-php: compatible
+```
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution expectations. Changes
-should be small, reviewable, and verified before review.
+Keep changes small and fixture-backed. If parser behavior changes, refresh snapshots intentionally and explain the compatibility impact in the commit or PR.
 
-## Security
+Run before submitting:
 
-See [SECURITY.md](SECURITY.md) for vulnerability reporting guidance. Replace
-the default security policy before publishing the generated repository.
+```bash
+npm test
+npm run check
+npm run build
+npm run smoke
+bash scripts/validate.sh
+```
 
-These links assume this README has been copied to the generated repository root.
+## Attribution
+
+This project is a fresh local-first OSS concept inspired by the existence of PHP protobuf generator work such as `protoc-gen-php` forks. It does not copy their implementation.
 
 ## License
 
