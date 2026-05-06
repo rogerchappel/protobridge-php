@@ -55,5 +55,5 @@ function parseEnumValue(line) {
 
 function namespaceFromPackage(pkg) {
   if (!pkg) return '';
-  return pkg.split('.').map((part) => part.charAt(0).toUpperCase() + part.slice(1)).join('\\\\');
+  return pkg.split('.').map((part) => part.charAt(0).toUpperCase() + part.slice(1)).join('\\');
 }
