@@ -1,21 +1,13 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+## 0.1.0 - 2026-05-06
 
-This project follows the [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
-format and uses semantic versioning when versioned releases are published.
+- Scaffolded `protobridge-php` with StackForge.
+- Added local-first `inspect` and `compare` CLI commands.
+- Added deterministic proto descriptor and PHP-shape snapshot fallback.
+- Added version mismatch reporting for protoc, PHP plugin, and PHP runtime labels.
+- Added fixtures, golden snapshots, tests, smoke checks, and setup docs.
 
-## [Unreleased]
+## Unreleased
 
-### Added
-
-- Initial project setup.
-
-## Release Links
-
-- Unreleased:
-  `https://github.com/rogerchappel/protobridge-php/compare/...HEAD`
-- Latest release:
-  `https://github.com/rogerchappel/protobridge-php/releases/latest`
-
-Replace placeholder links once the first release tag exists.
+- Real `protoc` adapters are planned but intentionally out of V1.
