@@ -12,7 +12,7 @@
         "file": "fixtures/basic/order.proto",
         "syntax": "proto3",
         "package": "demo.orders",
-        "phpNamespace": "Demo\\\\Orders",
+        "phpNamespace": "Demo\\Orders",
         "messages": [
           {
             "name": "Order",
@@ -74,7 +74,7 @@
         "file": "fixtures/basic/person.proto",
         "syntax": "proto3",
         "package": "demo.people",
-        "phpNamespace": "Demo\\\\People",
+        "phpNamespace": "Demo\\People",
         "messages": [
           {
             "name": "Person",
@@ -124,7 +124,7 @@
   },
   "generated": [
     {
-      "class": "Demo\\\\Orders\\\\Order",
+      "class": "Demo\\Orders\\\\Order",
       "fields": [
         {
           "name": "id",
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "class": "Demo\\\\People\\\\AddressBook",
+      "class": "Demo\\People\\\\AddressBook",
       "fields": [
         {
           "name": "people",
@@ -158,7 +158,7 @@
       ]
     },
     {
-      "class": "Demo\\\\People\\\\Person",
+      "class": "Demo\\People\\\\Person",
       "fields": [
         {
           "name": "id",
@@ -187,5 +187,5 @@
       ]
     }
   ],
-  "digest": "4895de7fcf61358312c349cc61237540590422a39e94913dfc91e6ebcbfd5b85"
+  "digest": "30e888ce9e344c7cfb1d195641d26c2d4cee42ebf165cbd6195c6fb7304aa7e1"
 }
