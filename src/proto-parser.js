@@ -11,11 +11,11 @@ export function parseProto(source, file = 'inline.proto') {
   const phpNamespace = unescapeProtoString(clean.match(/option\s+php_namespace\s*=\s*"([^"]+)"\s*;/)?.[1]) ?? namespaceFromPackage(pkg);
   const messages = parseBlocks(clean, 'message').map((block) => ({
     name: block.name,
-    fields: block.body.split('\n').map((line) => line.trim()).map(parseField).filter(Boolean)
+    fields: parseFields(block.body)
   }));
   const enums = parseBlocks(clean, 'enum').map((block) => ({
     name: block.name,
-    values: block.body.split('\n').map((line) => line.trim()).map(parseEnumValue).filter(Boolean)
+    values: parseEnumValues(block.body)
   }));
   const services = parseBlocks(clean, 'service').map((block) => ({
     name: block.name,
@@ -40,6 +40,15 @@ function parseBlocks(source, kind) {
     re.lastIndex = index;
   }
   return blocks;
+}
+
+
+function parseFields(body) {
+  return body.split(';').map((line) => line.trim()).map(parseField).filter(Boolean);
+}
+
+function parseEnumValues(body) {
+  return body.split(';').map((line) => line.trim()).map(parseEnumValue).filter(Boolean);
 }
 
 function parseField(line) {
