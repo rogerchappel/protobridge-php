@@ -4,19 +4,40 @@
   "description": "PHP protobuf generation compatibility checker for deterministic fixture snapshots.",
   "type": "module",
   "main": "./src/index.js",
+  "bin": {
+    "protobridge-php": "./bin/protobridge-php.js"
+  },
   "exports": {
     ".": "./src/index.js"
   },
   "files": [
+    "bin",
     "src",
-    "README.md"
+    "fixtures",
+    "docs",
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
     "test": "node --test",
+    "check": "node --check src/*.js && node --check bin/protobridge-php.js",
+    "build": "node scripts/build.js",
+    "smoke": "bash scripts/smoke.sh",
     "package:smoke": "npm pack --dry-run",
-    "release:check": "npm test && npm run package:smoke"
+    "release:check": "npm test && npm run check && npm run build && npm run smoke && npm run package:smoke"
   },
-  "keywords": [],
+  "keywords": [
+    "protobuf",
+    "php",
+    "protoc",
+    "compatibility",
+    "fixtures",
+    "snapshot-testing",
+    "local-first"
+  ],
   "author": "Roger Chappel",
-  "license": "MIT"
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  }
 }
