@@ -1,0 +1,191 @@
+{
+  "schemaVersion": 1,
+  "generator": {
+    "protoc": "26.0.0",
+    "phpPlugin": "1.0.0",
+    "phpRuntime": "4.30.0"
+  },
+  "descriptor": {
+    "schemaVersion": 1,
+    "files": [
+      {
+        "file": "fixtures/basic/order.proto",
+        "syntax": "proto3",
+        "package": "demo.orders",
+        "phpNamespace": "Demo\\Orders",
+        "messages": [
+          {
+            "name": "Order",
+            "fields": [
+              {
+                "label": "singular",
+                "type": "string",
+                "name": "id",
+                "number": 1
+              },
+              {
+                "label": "singular",
+                "type": "int64",
+                "name": "cents",
+                "number": 2
+              },
+              {
+                "label": "singular",
+                "type": "OrderState",
+                "name": "state",
+                "number": 3
+              }
+            ]
+          }
+        ],
+        "enums": [
+          {
+            "name": "OrderState",
+            "values": [
+              {
+                "name": "ORDER_STATE_UNSPECIFIED",
+                "number": 0
+              },
+              {
+                "name": "ORDER_STATE_OPEN",
+                "number": 1
+              },
+              {
+                "name": "ORDER_STATE_PAID",
+                "number": 2
+              }
+            ]
+          }
+        ],
+        "services": [
+          {
+            "name": "OrderLookup",
+            "rpcs": [
+              {
+                "name": "GetOrder",
+                "input": "Order",
+                "output": "Order"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "file": "fixtures/basic/person.proto",
+        "syntax": "proto3",
+        "package": "demo.people",
+        "phpNamespace": "Demo\\People",
+        "messages": [
+          {
+            "name": "Person",
+            "fields": [
+              {
+                "label": "singular",
+                "type": "string",
+                "name": "id",
+                "number": 1
+              },
+              {
+                "label": "singular",
+                "type": "string",
+                "name": "name",
+                "number": 2
+              },
+              {
+                "label": "repeated",
+                "type": "string",
+                "name": "email",
+                "number": 3
+              },
+              {
+                "label": "singular",
+                "type": "bool",
+                "name": "active",
+                "number": 4
+              }
+            ]
+          },
+          {
+            "name": "AddressBook",
+            "fields": [
+              {
+                "label": "repeated",
+                "type": "Person",
+                "name": "people",
+                "number": 1
+              }
+            ]
+          }
+        ],
+        "enums": [],
+        "services": []
+      }
+    ]
+  },
+  "generated": [
+    {
+      "class": "Demo\\Orders\\\\Order",
+      "fields": [
+        {
+          "name": "id",
+          "number": 1,
+          "type": "bytes",
+          "repeated": false
+        },
+        {
+          "name": "cents",
+          "number": 2,
+          "type": "int|string",
+          "repeated": false
+        },
+        {
+          "name": "state",
+          "number": 3,
+          "type": "OrderState",
+          "repeated": false
+        }
+      ]
+    },
+    {
+      "class": "Demo\\People\\\\AddressBook",
+      "fields": [
+        {
+          "name": "people",
+          "number": 1,
+          "type": "array<Person>",
+          "repeated": true
+        }
+      ]
+    },
+    {
+      "class": "Demo\\People\\\\Person",
+      "fields": [
+        {
+          "name": "id",
+          "number": 1,
+          "type": "string",
+          "repeated": false
+        },
+        {
+          "name": "name",
+          "number": 2,
+          "type": "string",
+          "repeated": false
+        },
+        {
+          "name": "email",
+          "number": 3,
+          "type": "array<string>",
+          "repeated": true
+        },
+        {
+          "name": "active",
+          "number": 4,
+          "type": "bool",
+          "repeated": false
+        }
+      ]
+    }
+  ],
+  "digest": "30e888ce9e344c7cfb1d195641d26c2d4cee42ebf165cbd6195c6fb7304aa7e1"
+}
