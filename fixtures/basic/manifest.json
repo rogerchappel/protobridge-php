@@ -1,0 +1,9 @@
+{
+  "name": "basic",
+  "description": "Small PHP protobuf compatibility fixture with messages, enums, repeated fields, and service declarations.",
+  "expected": {
+    "protoc": "25.3.0",
+    "phpPlugin": "1.0.0",
+    "phpRuntime": "4.30.0"
+  }
+}
