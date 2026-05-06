@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package demo.people;
+
+option php_namespace = "Demo\\People";
+
+message Person {
+  string id = 1;
+  string name = 2;
+  repeated string email = 3;
+  bool active = 4;
+}
+
+message AddressBook {
+  repeated Person people = 1;
+}
