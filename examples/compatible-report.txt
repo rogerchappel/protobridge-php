@@ -1,0 +1,8 @@
+protobridge-php: compatible
+input: fixtures/basic
+proto files: 2
+mismatches: 0
+versions:
+- protoc: ok - version match: 25.3.0
+- phpPlugin: ok - version match: 1.0.0
+- phpRuntime: ok - version match: 4.30.0
