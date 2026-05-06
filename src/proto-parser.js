@@ -8,7 +8,7 @@ export function parseProto(source, file = 'inline.proto') {
   const clean = stripComments(source);
   const syntax = clean.match(/syntax\s*=\s*"([^"]+)"\s*;/)?.[1] ?? 'proto2';
   const pkg = clean.match(/package\s+([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)*)\s*;/)?.[1] ?? '';
-  const phpNamespace = clean.match(/option\s+php_namespace\s*=\s*"([^"]+)"\s*;/)?.[1] ?? namespaceFromPackage(pkg);
+  const phpNamespace = unescapeProtoString(clean.match(/option\s+php_namespace\s*=\s*"([^"]+)"\s*;/)?.[1]) ?? namespaceFromPackage(pkg);
   const messages = parseBlocks(clean, 'message').map((block) => ({
     name: block.name,
     fields: block.body.split('\n').map((line) => line.trim()).map(parseField).filter(Boolean)
@@ -56,4 +56,8 @@ function parseEnumValue(line) {
 function namespaceFromPackage(pkg) {
   if (!pkg) return '';
   return pkg.split('.').map((part) => part.charAt(0).toUpperCase() + part.slice(1)).join('\\');
+}
+
+function unescapeProtoString(value) {
+  return value == null ? null : value.replace(/\\\\/g, '\\').replace(/\\"/g, '"');
 }
