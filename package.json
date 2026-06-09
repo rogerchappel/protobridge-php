@@ -39,5 +39,13 @@
   "license": "MIT",
   "engines": {
     "node": ">=20"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rogerchappel/protobridge-php.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rogerchappel/protobridge-php/issues"
+  },
+  "homepage": "https://github.com/rogerchappel/protobridge-php#readme"
 }
