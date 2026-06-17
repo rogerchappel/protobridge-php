@@ -10,4 +10,5 @@
 
 ## Unreleased
 
+- Added release-readiness validation for package metadata, CI placeholder cleanup, and package smoke coverage.
 - Real `protoc` adapters are planned but intentionally out of V1.
